@@ -1,0 +1,16 @@
+variable "region" {
+  type = string
+}
+
+variable "project" {
+ type= string 
+}
+
+variable "instance" {
+  type = string
+}
+
+variable "apis" {
+  type=list
+  apis=["compute.googleapis.com","servicenetworking.googleapis.com","sqladmin.googleapis.com","storage.googleapis.com"]
+}
