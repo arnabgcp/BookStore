@@ -4,6 +4,7 @@ resource "google_sql_database_instance" "mtr" {
   name             = var.instance
   region           = var.region
   database_version = "MYSQL_5_7"
+  
  
  depends_on = ["google_service_networking_connection.private_vpc_connection"]
 deletion_protection = false

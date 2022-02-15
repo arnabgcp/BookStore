@@ -24,7 +24,7 @@ metadata = {
        cd /home
        git clone https://github.com/arnabgcp/BookStore.git
        cp /home/BookStore/*.war /var/lib/tomcat9/webapps/
-       echo 'export JAVA_OPTS="-DDB_HOST=${google_sql_database_instance.mtr.ip_address.0.ip_address} -DDB_USER=root -DDB_PASSWORD='${random_string.rs.id}'"' >/usr/share/tomcat9/bin/setenv.sh
+       echo 'export JAVA_OPTS="-DDB_HOST=${google_sql_database_instance.mtr.ip_address.0.ip_address} -DDB_USER=root -DDB_PASSWORD='"'${random_string.rs.id}'"'"' >/usr/share/tomcat9/bin/setenv.sh
        
        chmod +x /usr/share/tomcat9/bin/setenv.sh
        service tomcat9 stop
