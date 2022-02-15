@@ -3,6 +3,7 @@ resource "google_compute_network" "ilb_network" {
   name                    = "l7-ilb-network"
   provider                = google
   auto_create_subnetworks = false
+  depends_on = [google_project_service.project]
 }
 
 # backend subnet

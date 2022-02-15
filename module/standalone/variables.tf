@@ -12,5 +12,5 @@ variable "instance" {
 
 variable "apis" {
   type=list
-  apis=["compute.googleapis.com","servicenetworking.googleapis.com","sqladmin.googleapis.com","storage.googleapis.com"]
+  default=["compute.googleapis.com","servicenetworking.googleapis.com","sqladmin.googleapis.com"]
 }

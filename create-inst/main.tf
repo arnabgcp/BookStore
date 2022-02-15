@@ -2,9 +2,9 @@ module "newmod"{
 
 source = "../module/standalone"
 
-region="us-west1"
-instance="newotmcat-1"
-project="halogen-premise-338015"
+region="europe-west1"
+instance="sql-inst"
+project="test-tf-gcp2022"
 
 
 }
