@@ -113,7 +113,7 @@ resource "google_sql_user" "users" {
   name     = "root"
   instance = google_sql_database_instance.mtr.name
   
-  password = "mywpsql"
+  password = "******"
 }
 
 resource "google_sql_database" "database" {
