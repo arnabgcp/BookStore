@@ -25,7 +25,7 @@ depends_on = [
   initial_node_count       = 1
   networking_mode = "VPC_NATIVE"
 
- 
+   
   
 ip_allocation_policy {
    
@@ -109,12 +109,21 @@ output "sqlmtr" {
 value = google_sql_database_instance.mtr.ip_address.0.ip_address
 
 }
+
+resource "random_integer" "rs" {
+
+ min=200
+ max=500 
+}
+
 resource "google_sql_user" "users" {
   name     = "root"
   instance = google_sql_database_instance.mtr.name
   
-  password = "******"
+  password = "uniqpass-${random_integer.rs.id}"
 }
+
+
 
 resource "google_sql_database" "database" {
   name     = "Bookstore"
@@ -122,7 +131,8 @@ resource "google_sql_database" "database" {
 
 provisioner "local-exec" {
 
-command= "sleep 30;gcloud config set project ${var.project};gcloud sql import sql ${google_sql_database_instance.mtr.name} gs://bucket-vm-images-2022/book.sql --database=Bookstore;gcloud container clusters get-credentials ${var.clsname} --region ${var.region} --project ${var.project};rm -rf bookstore-springboot;git clone https://github.com/arnabgcp/bookstore-springboot.git; sed -i 's/10.79.192.2/'${google_sql_database_instance.mtr.ip_address.0.ip_address}'/g' bookstore-springboot/yamlfiles/qa/db-secret.yaml; kubectl create ns qa; kubectl apply -f bookstore-springboot/yamlfiles/qa/ -n qa; kubectl get ingress -n qa"
+command= "sleep 30;gcloud config set project ${var.project};gcloud sql import sql ${google_sql_database_instance.mtr.name} gs://bucket-vm-images-2022/book.sql --database=Bookstore;gcloud container clusters get-credentials ${var.clsname} --region ${var.region} --project ${var.project};rm -rf bookstore-springboot;git clone https://github.com/arnabgcp/bookstore-springboot.git; sed -i 's/10.79.192.2/'${google_sql_database_instance.mtr.ip_address.0.ip_address}'/g' bookstore-springboot/yamlfiles/qa/db-secret.yaml; sed -i 's/#####/uniqpass-'${random_integer.rs.id}'/g' bookstore-springboot/yamlfiles/qa/db-secret.yaml; kubectl create ns qa; kubectl apply -f bookstore-springboot/yamlfiles/qa/ -n qa; kubectl get ingress -n qa"
+
 
 }
 
