@@ -1,6 +1,6 @@
 resource "random_integer" "ri" {
 
- min=10
+ min=20
  max=500 
 }
 
