@@ -25,6 +25,7 @@ USE `Bookstore`;
 
 --
 -- Table structure for table `book`
+
 --
 
 DROP TABLE IF EXISTS `book`;
