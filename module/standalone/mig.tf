@@ -1,6 +1,6 @@
 # MIG
 resource "google_compute_region_instance_group_manager" "mig" {
-  name     = "l7-ilb-mig1"
+  name     = "l7-ilb-mig12"
   provider = google
   region   = var.region
   version {
